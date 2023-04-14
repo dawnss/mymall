@@ -14,19 +14,19 @@ services:
       - ./db/data:/var/lib/mysql
       - ./db/init-sql:/docker-entrypoint-initdb.d
     environment:
-      MYSQL_ROOT_PASSWORD: litemall123456
+      MYSQL_ROOT_PASSWORD: mymall123456
     restart: always
-  litemall:
+  mymall:
     build:
-      context: litemall
+      context: mymall
       dockerfile: Dockerfile
-    container_name: litemall
+    container_name: mymall
     ports:
       - "8080:8080"
     volumes:
-      - ./litemall/storage:/storage
-      - ./litemall/logs:/logs
-      - ./litemall/backup:/backup
+      - ./mymall/storage:/storage
+      - ./mymall/logs:/logs
+      - ./mymall/backup:/backup
       - /etc/localtime:/etc/localtime
     environment:
       - TZ=Asia/Shanghai

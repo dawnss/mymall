@@ -2,7 +2,7 @@
 
 ## 1 小商城
 
-这里主要是指litemall-wx-api、litemall-wx和renard-wx三个模块的相关问题。
+这里主要是指mymall-wx-api、mymall-wx和renard-wx三个模块的相关问题。
 
 ### 1.1 小程序微信登录失败
 
@@ -17,7 +17,7 @@
 解决：
 
 1. 如果只是体验商品购买流程，开发者可以采用账号注册登录方式。
-2. 开发者在litemall-wx、renard-wx和litemall-core模块的appid信息设置成自己申请的信息。
+2. 开发者在mymall-wx、renard-wx和mymall-core模块的appid信息设置成自己申请的信息。
 
 ### 1.2 appid已经修改，微信登陆仍然失败
 
@@ -31,7 +31,7 @@
 
 解决：
 
-微信开发者工具中修改appid以后，请关闭litemall-wx项目或者微信开发者工具，重新启动导入litemall-wx。
+微信开发者工具中修改appid以后，请关闭mymall-wx项目或者微信开发者工具，重新启动导入mymall-wx。
 
 ### 1.3 手机真机测试不正常
 
@@ -73,11 +73,11 @@
 
 开发者必须拥有商户支付权限，然后设置好以下信息：
 ```
-litemall.wx.app-id=
-litemall.wx.app-secret=
-litemall.wx.mch-id=
-litemall.wx.mch-key=
-litemall.wx.notify-url=
+mymall.wx.app-id=
+mymall.wx.app-secret=
+mymall.wx.mch-id=
+mymall.wx.mch-key=
+mymall.wx.notify-url=
 ```
 
 解决：
@@ -107,7 +107,7 @@ litemall.wx.notify-url=
 
 ## 2. 管理后台
 
-这里主要是指litemall-admin-api和litemall-admin两个模块的相关问题。
+这里主要是指mymall-admin-api和mymall-admin两个模块的相关问题。
 
 ### 2.1 登录连接超时，联系管理员
 
@@ -118,7 +118,7 @@ litemall.wx.notify-url=
 原因：
 
 1. 首先，需要明白这是前后端分离项目，前端会向后端发送请求；
-2. 其次，需要明白报错的地方，是litemall-admin/src/utils/request.js文件中;
+2. 其次，需要明白报错的地方，是mymall-admin/src/utils/request.js文件中;
 3. 最后，连接超时是说发送给后端的请求长时间未反应。这里存在两个可能性：
     * 真连接超时，目前request.js文件中设置请求超时时间是5s，因此真的可能5s后端
     未及时返回数据；
@@ -161,7 +161,7 @@ litemall.wx.notify-url=
 
 解决：
 
-litemall-db模块的application-db.yaml资源文件中reasonable是true
+mymall-db模块的application-db.yaml资源文件中reasonable是true
 
     pagehelper:
       helperDialect:  mysql
@@ -173,7 +173,7 @@ litemall-db模块的application-db.yaml资源文件中reasonable是true
 
 ## 3. 基础系统
 
-这里主要是指litemall-db、litemall-core和litemall-all模块三个模块的相关问题。
+这里主要是指mymall-db、mymall-core和mymall-all模块三个模块的相关问题。
 
 
 ### 3.1 Invalid bound statement
@@ -183,7 +183,7 @@ litemall-db模块的application-db.yaml资源文件中reasonable是true
 有时（特别是采用mybatis generator重新生成代码）后端服务报错
 
 ```
-org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): org.linlinjava.litemall.db.dao.XXXX
+org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): org.linlinjava.mymall.db.dao.XXXX
 ```
 
 原因：
@@ -204,10 +204,10 @@ mvn package
 
 ```
 Error querying database. Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'add_time' in 'field list'
-The error may exist in org/linlinjava/litemall/db/dao/LitemallSystemMapper.xml
-The error may involve org.linlinjava.litemall.db.dao.LitemallSystemMapper.selectByExample-Inline
+The error may exist in org/linlinjava/mymall/db/dao/MymallSystemMapper.xml
+The error may involve org.linlinjava.mymall.db.dao.MymallSystemMapper.selectByExample-Inline
 The error occurred while setting parameters
-SQL: select id, key_name, key_value, add_time, update_time, deleted from litemall_system
+SQL: select id, key_name, key_value, add_time, update_time, deleted from mymall_system
 Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'add_time' in 'field list'
 ```
 
@@ -224,7 +224,7 @@ Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column
 
 现象：
 
-开发者直接（或使用Navicat）运行litemall_schema.sql时运行失败。
+开发者直接（或使用Navicat）运行mymall_schema.sql时运行失败。
 
 原因：
 
@@ -232,14 +232,14 @@ Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column
 
 解决:
 
-首先，请开发者请直接打开litemall_schema.sql文件，可以看到
+首先，请开发者请直接打开mymall_schema.sql文件，可以看到
 ```
-drop database if exists litemall;
-drop user if exists 'litemall'@'localhost';
-create database litemall default character set utf8mb4 collate utf8mb4_unicode_ci;
-use litemall;
-create user 'litemall'@'localhost' identified by 'litemall123456';
-grant all privileges on litemall.* to 'litemall'@'localhost';
+drop database if exists mymall;
+drop user if exists 'mymall'@'localhost';
+create database mymall default character set utf8mb4 collate utf8mb4_unicode_ci;
+use mymall;
+create user 'mymall'@'localhost' identified by 'mymall123456';
+grant all privileges on mymall.* to 'mymall'@'localhost';
 flush privileges;
 ```
 
@@ -248,10 +248,10 @@ flush privileges;
 * 创建数据库用户
 * 分配该用户所有操作权限
 
-因此，如果开发者运行litemall_schema.sql失败，开发者可以自行使用
+因此，如果开发者运行mymall_schema.sql失败，开发者可以自行使用
 相关SQL命令或者使用SQL工具创建数据库、用户和分配权限工作。
 
-此外实际上，**开发者也不应该在部署或者上线阶段运行litemall_schema.sql**
+此外实际上，**开发者也不应该在部署或者上线阶段运行mymall_schema.sql**
 
 ## 4. 项目
 
@@ -265,14 +265,14 @@ IDEA导入项目时，非常耗时间，或者卡断，或者一直疯狂运行�
 
 原因：
 
-应该是litemall-admin模块和litemall-vue模块的node_modules文件夹导致的。
-node_modules是litemall-admin和litemall-vue模块所依赖的项目库，可能有近200M的文件。
+应该是mymall-admin模块和mymall-vue模块的node_modules文件夹导致的。
+node_modules是mymall-admin和mymall-vue模块所依赖的项目库，可能有近200M的文件。
 而IDEA如果没有设置，则可能尝试对该文件夹进行解析索引，从而导致卡断。
 
 解决方案：
 
-1. 先关闭IDEA，然后删除litemall-admin和litemall-vue模块内的node_modules文件夹；
+1. 先关闭IDEA，然后删除mymall-admin和mymall-vue模块内的node_modules文件夹；
 2. 然后分别创建空的node_modules文件夹；
-3. 重新打开IDEA，分别设置litemall-admin模块和litemall-vue模块的node_modules文件夹Excluded状态。
+3. 重新打开IDEA，分别设置mymall-admin模块和mymall-vue模块的node_modules文件夹Excluded状态。
 
 ![](./pics/faq/excluded.png)

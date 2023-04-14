@@ -1,10 +1,10 @@
-# 3 litemall小商城
+# 3 mymall小商城
 
 技术：
 
-* 小商城前端，即litemall-wx模块和renard-wx模块
+* 小商城前端，即mymall-wx模块和renard-wx模块
   * 微信小程序
-* 小商城后端，即litemall-wx-api模块
+* 小商城后端，即mymall-wx-api模块
   * Spring Boot 2.x
   * Spring MVC
   * [weixin-java-tools](https://gitee.com/binary/weixin-java-tools)
@@ -38,15 +38,15 @@
 
 开发者在微信小程序官网申请以后，可以有app-id和app-secret信息。
 
-1. 在litemall-core模块的src/main/resources的application-core.yml资源文件中设置
+1. 在mymall-core模块的src/main/resources的application-core.yml资源文件中设置
     ```
-    litemall
+    mymall
         wx
             app-id: 开发者申请的app-id
             app-secret: 开发者申请的app-secret
     ```
 
-2. 在litemall-wx模块的project.config.json文件中设置
+2. 在mymall-wx模块的project.config.json文件中设置
 
     ```
     "appid": "开发者申请的app-id",
@@ -54,17 +54,17 @@
 
 3. 启动后台服务
 
-4. 建议开发者关闭当前项目或者直接关闭微信开发者工具，重新打开（因为此时litemall-wx模块的appid可能未更新）。
+4. 建议开发者关闭当前项目或者直接关闭微信开发者工具，重新打开（因为此时mymall-wx模块的appid可能未更新）。
    编译运行，尝试微信登录
 
 ### 3.0.2 微信支付配置
 
 开发者在微信商户平台申请以后，可以有app-id和app-secret信息。
 
-1. 在litemall-core-api模块的src/main/resources的application-core.yml资源文件中设置
+1. 在mymall-core-api模块的src/main/resources的application-core.yml资源文件中设置
 
     ```
-    litemall
+    mymall
         wx
             mch-id: 开发者申请的mch-id
             mch-key: 开发者申请的mch-key
@@ -82,7 +82,7 @@
 
 3. 部署后台服务到云服务器
 
-4. litemall-wx的api.js设置云服务器的域名。
+4. mymall-wx的api.js设置云服务器的域名。
    编译运行，尝试微信支付。
    
 ### 3.0.3 微信退款配置
@@ -91,10 +91,10 @@
 
 1. 从微信商户平台下载商户证书（或者叫做API证书），保存到合适位置，
    请阅读[文档](https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=4_3)
-2. 在litemall-core-api模块的src/main/resources的application-core.yml资源文件中设置
+2. 在mymall-core-api模块的src/main/resources的application-core.yml资源文件中设置
 
     ```
-    litemall
+    mymall
         wx
             key-path: 证书文件访问路径
     ```
@@ -108,7 +108,7 @@
 > * 首先，管理员登录微信平台进行退款操作；
 > * 然后，管理员登陆管理后台点击退款按钮，进行订单退款状态变更和商品库存回库。
 
-## 3.1 litemall-wx-api
+## 3.1 mymall-wx-api
 
 本节介绍小商场的后台服务模块。
 
@@ -183,7 +183,7 @@
 
 见WxWebMvcConfiguration类、LoginUser和LoginUserHandlerMethodArgumentResolver类。
 
-小商城后端服务每一次请求都会检测是否存在HTTP头部域`X-Litemall-Token`。
+小商城后端服务每一次请求都会检测是否存在HTTP头部域`X-Mymall-Token`。
 如果存在，则内部查询转换成LoginUser，然后作为请求参数。
 如果不存在，则作为null请求参数。
 
@@ -206,7 +206,7 @@ public class WxAddressController {
 ```
 如果检测`userId`是null，则返回错误信息“用户未登录”。
 
-## 3.2 litemall-wx
+## 3.2 mymall-wx
 
 这里的代码基于[nideshop-mini-program](https://gitee.com/tumobi/nideshop-mini-program)，但是做了一定的修改：
 
@@ -218,8 +218,8 @@ public class WxAddressController {
 具体变化可以采用工具进行对比。
 
 注意
-> litemall-wx模块代码基于nideshop-mini-program的commit版本[acbf6276eb27abc6a48887cddd223d7261f0088e](https://github.com/tumobi/nideshop-mini-program/commit/acbf6276eb27abc6a48887cddd223d7261f0088e)。
-> 由于改动变化较大，因此之后litemall-wx将独立开发，不会合并nideshop-mini-program的更新。
+> mymall-wx模块代码基于nideshop-mini-program的commit版本[acbf6276eb27abc6a48887cddd223d7261f0088e](https://github.com/tumobi/nideshop-mini-program/commit/acbf6276eb27abc6a48887cddd223d7261f0088e)。
+> 由于改动变化较大，因此之后mymall-wx将独立开发，不会合并nideshop-mini-program的更新。
 
 ### 3.2.1 业务API设置
 
@@ -365,7 +365,7 @@ var WxApiRoot = 'http://localhost:8082/wx/';
 
 ### 3.2.4 storage
 
-litemall-wx模块采用storage来存储一些数据，以及支持组件间数据通信。
+mymall-wx模块采用storage来存储一些数据，以及支持组件间数据通信。
 
 #### 3.2.4.1 userInfo和token
 
@@ -379,9 +379,9 @@ litemall-wx模块采用storage来存储一些数据，以及支持组件间数�
 
 ## 3.3 renard-wx
 
-renard-wx是另外一个小程序前端，其后端API也是litemall-wx-api。
+renard-wx是另外一个小程序前端，其后端API也是mymall-wx-api。
 
-和litemall-wx的区别是：
+和mymall-wx的区别是：
 1. 界面样式有所调整；
 2. 功能进一步简化。
 

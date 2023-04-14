@@ -1,19 +1,19 @@
 # 数据库
 
-litemall数据库基于nideshop中的[nideshop.sql](https://github.com/tumobi/nideshop/blob/master/nideshop.sql)数据库，
+mymall数据库基于nideshop中的[nideshop.sql](https://github.com/tumobi/nideshop/blob/master/nideshop.sql)数据库，
 然后在实际开发过程中进行了调整和修改:
 
 * 删除了一些目前不必要的表；
 * 删除了表中一些目前不必要的字段；
-* 行政区域数据litemall_region没有采用原nideshop中的数据，而是采用了[Administrative-divisions-of-China](https://github.com/modood/Administrative-divisions-of-China)；
+* 行政区域数据mymall_region没有采用原nideshop中的数据，而是采用了[Administrative-divisions-of-China](https://github.com/modood/Administrative-divisions-of-China)；
 * 表中的某些字段采用JSON存储；
 * 表中的日期或时间字段采用DATE、DATETIME；
 * 字段的数据类型粗粒度化，例如避免MEDIUMINT，而是INT；
 * 表的数据做了清理、调整和补充（假数据）。
 
-litemall数据库由三个sql文件组成，在litemall-db文件夹下面的sql文件夹中：
+mymall数据库由三个sql文件组成，在mymall-db文件夹下面的sql文件夹中：
 
-1. litemall_schema.sql
+1. mymall_schema.sql
   
    作用是创建空数据库、创建用户、设置访问权限。
    
@@ -21,19 +21,19 @@ litemall数据库由三个sql文件组成，在litemall-db文件夹下面的sql�
 
    注意，这里的sql文件不一定需要运行，开发者可以自己手动或命令行或IDE进行对应的操作即可。
    
-2. litemall_table.sql
+2. mymall_table.sql
 
    作用是创建数据库表，但是没有创建任何数据。
    
    因此，开发者可以在部署生产阶段直接使用。
  
-3. litemall_data.sql
+3. mymall_data.sql
 
    作用是创建测试数据。
       
    开发者开发测试阶段可以使用，但是部署开发阶段应该使用自己的数据。
 
-综上，这里litemall真正必须运行的sql文件是litemall_table.sql，其他两个sql文件开发者自行决定如何是否使用。
+综上，这里mymall真正必须运行的sql文件是mymall_table.sql，其他两个sql文件开发者自行决定如何是否使用。
 
 ## 1 数据表结构
 
@@ -59,7 +59,7 @@ litemall数据库由三个sql文件组成，在litemall-db文件夹下面的sql�
 
 ### 2.1 商品和货品设计
 
-这里商品存在商品表（litemall_goods)，商品属性表（litemall_goods_attribute），商品规格表（litemall_goods_specification），商品货品表（litemall_goods_product）四种表
+这里商品存在商品表（mymall_goods)，商品属性表（mymall_goods_attribute），商品规格表（mymall_goods_specification），商品货品表（mymall_goods_product）四种表
 
 商品表是一种商品的基本信息，主要包括商品介绍，商品图片，商品所属类目，商品品牌商等；
 
@@ -135,21 +135,21 @@ litemall数据库由三个sql文件组成，在litemall-db文件夹下面的sql�
 
 ### 2.2 用户和微信用户设计
 
-目前准备支持用户普通账号登录和微信登录两种方式，两种登录方式仅仅采用一个litemall-user表可能不是很合适。
+目前准备支持用户普通账号登录和微信登录两种方式，两种登录方式仅仅采用一个mymall-user表可能不是很合适。
 
 外，如果进一步支持其他多种第三方登录，那么这里需要重新设计。
 
 ### 2.3 行政区域设计
  
-litemall_region表保存了行政区域信息，包括省级、市级、县级三个等级，
+mymall_region表保存了行政区域信息，包括省级、市级、县级三个等级，
 
-原nideship.sql中存在region数据，但是litemall.sql的region数据则来自
+原nideship.sql中存在region数据，但是mymall.sql的region数据则来自
 [Administrative-divisions-of-China](https://github.com/modood/Administrative-divisions-of-China)项目。
 
 ### 2.4 订单设计
 
 订单信息主要由基本信息、商品信息、地址信息、费用信息、快递信息、支付信息和其他信息组成，
-由litemall_order表和litemall_order_goods表保存。
+由mymall_order表和mymall_order_goods表保存。
 
 * 基本信息
 
@@ -243,7 +243,7 @@ litemall_region表保存了行政区域信息，包括省级、市级、县级�
 
 小商场用户在小商场点击`下单`按钮，此时小商城后端服务会生产商户订单。
 
-所对应的后台服务方法是litemall-wx-api模块的`WxOrderController.submit`方法。
+所对应的后台服务方法是mymall-wx-api模块的`WxOrderController.submit`方法。
  
 * 101 -> 101
 
@@ -255,7 +255,7 @@ litemall_region表保存了行政区域信息，包括省级、市级、县级�
 关于微信支付流程，可以参看官方文档的[小程序支付业务流程](https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=7_4&index=3)
 也就是说这里小商城后台服务会返回付支付信息。
 
-所对应的后台服务方法是litemall-wx-api模块的`WxOrderController.prepay`
+所对应的后台服务方法是mymall-wx-api模块的`WxOrderController.prepay`
 
 小商城接收返回的预支付信息后，会在小程序端出现支付页面。
 如果用户放弃支付，则不会出现任何效果，不会向小商场后台服务发送任何信息。
@@ -265,21 +265,21 @@ litemall_region表保存了行政区域信息，包括省级、市级、县级�
 
 如果用户没有支付，那么此时用户可以点击`取消订单`按钮来放弃当前订单。
 
-所对应的后台服务方法是litemall-wx-api模块的`WxOrderController.cancel`
+所对应的后台服务方法是mymall-wx-api模块的`WxOrderController.cancel`
 
 * 101 -> 103
 
 如果用户没有支付，也没有点击`取消订单`按钮，那么系统会定时查询数据库的订单信息。
 如果发现存在订单未支付状态超时半小时，此时系统会自动取消订单，来释放商品资源。
 
-对应的应该是litemall-admin-api模块的系统定时任务的`OrderJob.checkOrderUnpaid`
+对应的应该是mymall-admin-api模块的系统定时任务的`OrderJob.checkOrderUnpaid`
 
 * 101 -> 201
 
 如果用户支付，微信商户平台会向小商场后台服务推送支付结果。
 而响应结果表示支付成功，则订单状态信息设置201，表示支付成功。
 
-所对应的后台服务方法是litemall-wx-api模块的`WxOrderController.payNotify`
+所对应的后台服务方法是mymall-wx-api模块的`WxOrderController.payNotify`
 
 * 201 -> 202
 
@@ -288,7 +288,7 @@ litemall_region表保存了行政区域信息，包括省级、市级、县级�
 但是这里考虑到安全原因，不支持系统自动退款操作。
 相应地，这里小商场后台服务只是设置订单状态，表示退款申请中。
 
-所对应的后台服务方法是litemall-wx-api模块的`WxOrderController.refund`
+所对应的后台服务方法是mymall-wx-api模块的`WxOrderController.refund`
 
 * 202 -> 203
 
@@ -296,27 +296,27 @@ litemall_region表保存了行政区域信息，包括省级、市级、县级�
 管理平台里面点击`退款确认`按钮，此时订单状态会设置成203，表明
 退款已经成功，同时系统会自动恢复订单商品数量。
 
-所对应的后台服务方法是litemall-admin-api模块的`AdminOrderController.refundConfirm`
+所对应的后台服务方法是mymall-admin-api模块的`AdminOrderController.refundConfirm`
 
 * 201 -> 301
 
 当订单支付以后，管理员进行订单发货，然后在管理平台点击`发货`，填写快递信息，
 设置订单状态是301，表示管理员已发货状态。
 
-所对应的后台服务方法是litemall-admin-api模块的`AdminOrderController.ship`
+所对应的后台服务方法是mymall-admin-api模块的`AdminOrderController.ship`
 
 * 301 -> 401
 
 当用户收到商品以后，用户点击`收货确认`按钮，设置订单状态401，表示用户成功收货。
 
-所对应的后台服务方法是litemall-wx-api模块的`WxOrderController.confirm`
+所对应的后台服务方法是mymall-wx-api模块的`WxOrderController.confirm`
 
 * 301 -> 402
 
 当管理员发货以后，用户一直没有确认收货，系统定时检测订单状态，如果发现发货以后
 七天用户都没有收货，此时系统自动确认用户收货，设置订单状态402。
 
-应该改为 litemall-admin-api模块的系统定时任务`OrderJob.checkOrderUnconfirm`
+应该改为 mymall-admin-api模块的系统定时任务`OrderJob.checkOrderUnconfirm`
 
 注意：
 > 上述订单状态变化中具体的逻辑处理可以参考相应模块文档和模块代码。
@@ -380,8 +380,8 @@ litemall_region表保存了行政区域信息，包括省级、市级、县级�
 退款金额如何计算。如果开发者这里考虑清楚，也可以参考当前代码实现
 订单商品独立售后
 
-litemall_order表中存在`aftersale_status`字段，记录订单售后状态。
-而具体的售后记录则是litemall_aftersale表记录。
+mymall_order表中存在`aftersale_status`字段，记录订单售后状态。
+而具体的售后记录则是mymall_aftersale表记录。
 
 这里`type`字段表示当前售后类型，目前存在三种类型：
 
@@ -402,7 +402,7 @@ litemall_order表中存在`aftersale_status`字段，记录订单售后状态。
 * 如果status=4，管理员审核不通过，售后完成；
 * 如果status=5，用户已取消售后，当用户在申请售后以后可以在管理员审核前申请取消。
 
-这里需要补充的是：订单litemall_order表的`aftersale_status`字段，和订单售后litemall_aftersale
+这里需要补充的是：订单mymall_order表的`aftersale_status`字段，和订单售后mymall_aftersale
 表的`status`字段是完全一致的，方便前端分别查询订单状态和订单售后状态。
 
 `amount`字段表示当前售后退款金额，正如前面所述当前仅支持订单整体售后，因此目前设计的退款金额是
@@ -410,8 +410,8 @@ litemall_order表中存在`aftersale_status`字段，记录订单售后状态。
 
 #### 2.4.4 商品评价
 
-在litemall_order表中存在`comments`字段，表示有几个订单商品没有评价；
-而在litemall_order_goods表中存在`comment`字段，表示当前订单商品的评论ID。
+在mymall_order表中存在`comments`字段，表示有几个订单商品没有评价；
+而在mymall_order_goods表中存在`comment`字段，表示当前订单商品的评论ID。
 
 * 当用户确认收货以后，`comments`设置当前订单中未评价的商品数量。而`comment`设置0；
 * 当用户评价一个订单商品，`comments`会减一，而`comment`指向新创建的评论；
@@ -419,7 +419,7 @@ litemall_order表中存在`aftersale_status`字段，记录订单售后状态。
 
 ### 2.5 评论设计
 
-评论表litemall_comment保存评论相关的信息，其中最关键的是`type`字段和`value_id`字段。
+评论表mymall_comment保存评论相关的信息，其中最关键的是`type`字段和`value_id`字段。
 
 这里`type`字段表示当前评论类型，目前存在两种类型：
 
@@ -430,22 +430,22 @@ litemall_order表中存在`aftersale_status`字段，记录订单售后状态。
 
 ### 2.6 团购设计
 
-团购是由团购规则表litemall_groupon_rules和团购活动表litemall_groupon组成。
+团购是由团购规则表mymall_groupon_rules和团购活动表mymall_groupon组成。
 
-管理员在管理后台对一些商品配置团购规则，保存在litemall_groupon_rules表中。
+管理员在管理后台对一些商品配置团购规则，保存在mymall_groupon_rules表中。
 
 用户在小商场中则看到团购规则给出的优惠信息。
 接下来用户存在两种操作：
-第一种是，用户开团，保存在litemall_groupon中，用户主动分享商品团购页面给朋友；
-第二张是，用户参团，也保存在litemall_groupon中。
+第一种是，用户开团，保存在mymall_groupon中，用户主动分享商品团购页面给朋友；
+第二张是，用户参团，也保存在mymall_groupon中。
 
 只有开团人数符合团购规则条件，创建的订单才会有效，否则管理员需要退款取消当前团购。
 
 ### 2.7 优惠券设计
 
-优惠券由litemall_coupon表和litemall_coupon_user表组成：
-* litemall_coupon表，是优惠券基本信息及使用规则。
-* litemall_coupon_user表，是用户优惠券领取和使用的记录。
+优惠券由mymall_coupon表和mymall_coupon_user表组成：
+* mymall_coupon表，是优惠券基本信息及使用规则。
+* mymall_coupon_user表，是用户优惠券领取和使用的记录。
 
 #### 2.7.1 type
 
@@ -471,14 +471,14 @@ time_type字段，标识优惠券有效期；
 
 status字段，标识优惠券的当前状态。
 
-这里需要指出的是，litemall_coupon表和litemall_coupon_user表都有status字段。
+这里需要指出的是，mymall_coupon表和mymall_coupon_user表都有status字段。
 
-litemall_coupon表的status字段，包含以后三种状态：
+mymall_coupon表的status字段，包含以后三种状态：
 * 正常可用，
 * 已过期，
 * 已下架，
 
-litemall_coupon_user表的status字段，包含以后三种状态：
+mymall_coupon_user表的status字段，包含以后三种状态：
 * 未使用，
 * 已使用，
 * 已过期，
@@ -486,7 +486,7 @@ litemall_coupon_user表的status字段，包含以后三种状态：
 
 ### 2.8 系统配置设计
 
-系统配置表litemall_system保存系统的配置信息。
+系统配置表mymall_system保存系统的配置信息。
 
 这里需要注意的是，在Java代码层系统配置表只能执行更新操作，
 不能执行创建和删除操作。也就是说，系统配置数据都应该是开发者
@@ -494,14 +494,14 @@ litemall_coupon_user表的status字段，包含以后三种状态：
 
 ### 2.9 存储对象设计
 
-存储对象表litemall_storage保存上传文件信息。
+存储对象表mymall_storage保存上传文件信息。
 
 当用户或者管理员上传图像时，图像文件会保存到本地或者第三方云存储服务器中，
 同时在存储对象表中记录一下。
 
 ### 2.10 操作日志设计
 
-业务日志表litemall_log记录管理员的关键性操作。
+业务日志表mymall_log记录管理员的关键性操作。
 
 需要讨论的是，很多项目的业务日志模块采用注解方式，即加上方法注解，因此可以自动捕获
 用户的操作行为。虽然这样做很方便且不会影响业务代码，但是实际上最终是粗颗粒地记录，反而记录意义不大。
@@ -549,7 +549,7 @@ litemall_coupon_user表的status字段，包含以后三种状态：
 
 ### 2.11 通用设计
 
-除了以上表，数据库还存在其他一些业务表，例如专题表litemall_topic，
+除了以上表，数据库还存在其他一些业务表，例如专题表mymall_topic，
 但是都很直观，不需要多讨论。
 
 以下是一些表设计中无具体业务意义可通用的字段。

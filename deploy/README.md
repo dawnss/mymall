@@ -4,26 +4,26 @@
 
 1. 在服务器或者开发机打包项目到deploy；
     ```
-    cd litemall
-    cat ./litemall-db/sql/litemall_schema.sql > ./deploy/db/litemall.sql
-    cat ./litemall-db/sql/litemall_table.sql >> ./deploy/db/litemall.sql
-    cat ./litemall-db/sql/litemall_data.sql >> ./deploy/db/litemall.sql
+    cd mymall
+    cat ./mymall-db/sql/mymall_schema.sql > ./deploy/db/mymall.sql
+    cat ./mymall-db/sql/mymall_table.sql >> ./deploy/db/mymall.sql
+    cat ./mymall-db/sql/mymall_data.sql >> ./deploy/db/mymall.sql
     
-    cd ./litemall-admin
+    cd ./mymall-admin
     cnpm install
     cnpm run build:dep
     
     cd ..
     mvn clean package
-    cp -f ./litemall-all/target/litemall-all-*-exec.jar ./deploy/litemall/litemall.jar
+    cp -f ./mymall-all/target/mymall-all-*-exec.jar ./deploy/mymall/mymall.jar
     ```
     这里的工作是：
     1. 把数据库文件拷贝到deploy/db文件夹
-    2. 编译litemall-admin项目
-    3. 编译litemall-all模块，同时把litemall-admin编译得到的静态文件拷贝到
-       litemall-all模块的static目录
+    2. 编译mymall-admin项目
+    3. 编译mymall-all模块，同时把mymall-admin编译得到的静态文件拷贝到
+       mymall-all模块的static目录
        
-2. 修改litemall文件夹下面的*.yml外部配置文件，当litemall-all模块启动时会
+2. 修改mymall文件夹下面的*.yml外部配置文件，当mymall-all模块启动时会
     加载外部配置文件，而覆盖默认jar包内部的配置文件。
     例如，配置文件中一些地方需要设置成远程服务器的IP地址
     
@@ -35,11 +35,11 @@
 
 * db
 
-存放litemall数据库文件
+存放mymall数据库文件
 
-* litemall
+* mymall
 
-存放远程服务器运行的代码，包括litemall-all二进制可执行包和litemall外部配置文件
+存放远程服务器运行的代码，包括mymall-all二进制可执行包和mymall外部配置文件
 
 * util
 存放开发服务器运行的脚本，包括package.sh脚本和lazy.sh脚本。
@@ -48,16 +48,16 @@
 ### 项目部署
 
 1. 远程服务器环境（MySQL和JDK1.8）已经安装好，请确保云服务器的安全组已经允许相应的端口。
-2. 导入db/litemall.sql
+2. 导入db/mymall.sql
     ```bash
     cd /home/ubuntu/deploy/db
-    mysql -h localhost -u $ROOT -p$PASSWORD < litemall.sql
+    mysql -h localhost -u $ROOT -p$PASSWORD < mymall.sql
     ```
 3. 启动服务
     ```bash
-    sudo service litemall stop
-    sudo ln -f -s /home/ubuntu/deploy/litemall/litemall.jar /etc/init.d/litemall
-    sudo service litemall start
+    sudo service mymall stop
+    sudo ln -f -s /home/ubuntu/deploy/mymall/mymall.jar /etc/init.d/mymall
+    sudo service mymall start
     ```
 4. 测试是否部署成功(xxx.xxx.xxx.xxx是云服务器IP）：
     ```
@@ -96,7 +96,7 @@
 
 总结，当开发者设置好配置信息以后，可以在本地运行lazy.sh脚本自动一键部署:
 ```bash
-cd litemall
+cd mymall
 ./deploy/util/lazy.sh
 ```
 

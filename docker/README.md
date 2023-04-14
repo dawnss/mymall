@@ -4,26 +4,26 @@
 
 1. 在服务器或者开发机打包项目到docker；
     ```
-    cd litemall
-    cat ./litemall-db/sql/litemall_schema.sql > ./docker/db/init-sql/litemall.sql
-    cat ./litemall-db/sql/litemall_table.sql >> ./docker/db/init-sql/litemall.sql
-    cat ./litemall-db/sql/litemall_data.sql >> ./docker/db/init-sql/litemall.sql
+    cd mymall
+    cat ./mymall-db/sql/mymall_schema.sql > ./docker/db/init-sql/mymall.sql
+    cat ./mymall-db/sql/mymall_table.sql >> ./docker/db/init-sql/mymall.sql
+    cat ./mymall-db/sql/mymall_data.sql >> ./docker/db/init-sql/mymall.sql
     
-    cd ./litemall-admin
+    cd ./mymall-admin
     cnpm install
     cnpm run build:dep
     
     cd ..
     mvn clean package
-    cp -f ./litemall-all/target/litemall-all-*-exec.jar ./docker/litemall/litemall.jar
+    cp -f ./mymall-all/target/mymall-all-*-exec.jar ./docker/mymall/mymall.jar
     ```
     这里的工作是：
     1. 把数据库文件拷贝到docker/db文件夹
-    2. 编译litemall-admin项目
-    3. 编译litemall-all模块，同时把litemall-admin编译得到的静态文件拷贝到
-       litemall-all模块的static目录
+    2. 编译mymall-admin项目
+    3. 编译mymall-all模块，同时把mymall-admin编译得到的静态文件拷贝到
+       mymall-all模块的static目录
        
-2. 修改litemall文件夹下面的*.yml外部配置文件，当litemall-all模块启动时会
+2. 修改mymall文件夹下面的*.yml外部配置文件，当mymall-all模块启动时会
     加载外部配置文件，而覆盖默认jar包内部的配置文件。
     例如，配置文件中一些地方需要设置成远程服务器的IP地址
     
@@ -35,11 +35,11 @@
 
 * db
 
-存放litemall数据库文件
+存放mymall数据库文件
 
-* litemall
+* mymall
 
-存放远程服务器运行的代码，包括litemall-all二进制可执行包和litemall外部配置文件
+存放远程服务器运行的代码，包括mymall-all二进制可执行包和mymall外部配置文件
 
 * util
 
@@ -98,7 +98,7 @@ docker-compose配置脚本，运行docker-compose命令会
 
 总结，当开发者设置好配置信息以后，可以在本地运行lazy.sh脚本自动一键部署:
 ```bash
-cd litemall
+cd mymall
 ./docker/util/lazy.sh
 ```
 
