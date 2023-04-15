@@ -50,9 +50,9 @@
     </root>
     <logger name="org.mybatis" level="ERROR" />
     <logger name="org.springframework" level="ERROR" />
-    <logger name="org.linlinjava.mymall.core" level="ERROR" />
-    <logger name="org.linlinjava.mymall.db" level="ERROR" />
-    <logger name="org.linlinjava.mymall.admin" level="DEBUG" />
-    <logger name="org.linlinjava.mymall.wx" level="DEBUG" />
-    <logger name="org.linlinjava.mymall" level="DEBUG" />
+    <logger name="org.biye.mymall.core" level="ERROR" />
+    <logger name="org.biye.mymall.db" level="ERROR" />
+    <logger name="org.biye.mymall.admin" level="DEBUG" />
+    <logger name="org.biye.mymall.wx" level="DEBUG" />
+    <logger name="org.biye.mymall" level="DEBUG" />
 </configuration>

@@ -51,9 +51,9 @@
             <property name="useJSR310Types" value="true"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="org.linlinjava.mymall.db.domain" targetProject="src/main/java"/>
-        <sqlMapGenerator targetPackage="org.linlinjava.mymall.db.dao" targetProject="src/main/resources"/>
-        <javaClientGenerator type="XMLMAPPER" targetPackage="org.linlinjava.mymall.db.dao"
+        <javaModelGenerator targetPackage="org.biye.mymall.db.domain" targetProject="src/main/java"/>
+        <sqlMapGenerator targetPackage="org.biye.mymall.db.dao" targetProject="src/main/resources"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="org.biye.mymall.db.dao"
                              targetProject="src/main/java"/>
         <!--表名-->
         <table tableName="mymall_ad">
@@ -65,7 +65,7 @@
         <table tableName="mymall_admin">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <columnOverride column="role_ids" javaType="java.lang.Integer[]"
-                            typeHandler="org.linlinjava.mymall.db.mybatis.JsonIntegerArrayTypeHandler"/>
+                            typeHandler="org.biye.mymall.db.mybatis.JsonIntegerArrayTypeHandler"/>
         </table>
         <table tableName="mymall_brand">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
@@ -73,7 +73,7 @@
         <table tableName="mymall_cart">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <columnOverride column="specifications" javaType="java.lang.String[]"
-                            typeHandler="org.linlinjava.mymall.db.mybatis.JsonStringArrayTypeHandler"/>
+                            typeHandler="org.biye.mymall.db.mybatis.JsonStringArrayTypeHandler"/>
         </table>
         <table tableName="mymall_category">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
@@ -84,13 +84,13 @@
         <table tableName="mymall_comment">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <columnOverride column="pic_urls" javaType="java.lang.String[]"
-                            typeHandler="org.linlinjava.mymall.db.mybatis.JsonStringArrayTypeHandler"/>
+                            typeHandler="org.biye.mymall.db.mybatis.JsonStringArrayTypeHandler"/>
         </table>
 
         <table tableName="mymall_feedback">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <columnOverride column="pic_urls" javaType="java.lang.String[]"
-                            typeHandler="org.linlinjava.mymall.db.mybatis.JsonStringArrayTypeHandler"/>
+                            typeHandler="org.biye.mymall.db.mybatis.JsonStringArrayTypeHandler"/>
         </table>
 
         <table tableName="mymall_footprint">
@@ -99,7 +99,7 @@
         <table tableName="mymall_goods">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <columnOverride column="gallery" javaType="java.lang.String[]"
-                            typeHandler="org.linlinjava.mymall.db.mybatis.JsonStringArrayTypeHandler"/>
+                            typeHandler="org.biye.mymall.db.mybatis.JsonStringArrayTypeHandler"/>
         </table>
         <table tableName="mymall_goods_attribute">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
@@ -110,7 +110,7 @@
         <table tableName="mymall_goods_product">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <columnOverride column="specifications" javaType="java.lang.String[]"
-                            typeHandler="org.linlinjava.mymall.db.mybatis.JsonStringArrayTypeHandler"/>
+                            typeHandler="org.biye.mymall.db.mybatis.JsonStringArrayTypeHandler"/>
         </table>
         <table tableName="mymall_issue">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
@@ -124,9 +124,9 @@
         <table tableName="mymall_order_goods">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <columnOverride column="specifications" javaType="java.lang.String[]"
-                            typeHandler="org.linlinjava.mymall.db.mybatis.JsonStringArrayTypeHandler"/>
+                            typeHandler="org.biye.mymall.db.mybatis.JsonStringArrayTypeHandler"/>
             <columnOverride column="comments" javaType="java.lang.Integer[]"
-                            typeHandler="org.linlinjava.mymall.db.mybatis.JsonIntegerArrayTypeHandler"/>
+                            typeHandler="org.biye.mymall.db.mybatis.JsonIntegerArrayTypeHandler"/>
 
         </table>
         <table tableName="mymall_region">
@@ -141,7 +141,7 @@
         <table tableName="mymall_topic">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <columnOverride column="goods" javaType="java.lang.Integer[]"
-                            typeHandler="org.linlinjava.mymall.db.mybatis.JsonIntegerArrayTypeHandler"/>
+                            typeHandler="org.biye.mymall.db.mybatis.JsonIntegerArrayTypeHandler"/>
         </table>
         <table tableName="mymall_user">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
@@ -159,7 +159,7 @@
         <table tableName="mymall_coupon">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <columnOverride column="goods_value" javaType="java.lang.Integer[]"
-                            typeHandler="org.linlinjava.mymall.db.mybatis.JsonIntegerArrayTypeHandler"/>
+                            typeHandler="org.biye.mymall.db.mybatis.JsonIntegerArrayTypeHandler"/>
         </table>
         <table tableName="mymall_coupon_user">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
@@ -182,7 +182,7 @@
         <table tableName="mymall_aftersale">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <columnOverride column="pictures" javaType="java.lang.String[]"
-                            typeHandler="org.linlinjava.mymall.db.mybatis.JsonStringArrayTypeHandler"/>
+                            typeHandler="org.biye.mymall.db.mybatis.JsonStringArrayTypeHandler"/>
         </table>
     </context>
 </generatorConfiguration>

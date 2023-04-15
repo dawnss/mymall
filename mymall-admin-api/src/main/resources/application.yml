@@ -12,8 +12,8 @@ logging:
     root:  ERROR
     org.springframework:  ERROR
     org.mybatis:  ERROR
-    org.linlinjava.mymall.admin:  DEBUG
-    org.linlinjava.mymall:  ERROR
+    org.biye.mymall.admin:  DEBUG
+    org.biye.mymall:  ERROR
 
 swagger:
   production: false

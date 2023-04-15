@@ -468,20 +468,20 @@ flush privilege
 ```
     <logger name="org.mybatis" level="ERROR" />
     <logger name="org.springframework" level="ERROR" />
-    <logger name="org.linlinjava.mymall.core" level="DEBUG" />
-    <logger name="org.linlinjava.mymall.db" level="DEBUG" />
-    <logger name="org.linlinjava.mymall.admin" level="DEBUG" />
-    <logger name="org.linlinjava.mymall.wx" level="DEBUG" />
-    <logger name="org.linlinjava.mymall" level="DEBUG" />
+    <logger name="org.biye.mymall.core" level="DEBUG" />
+    <logger name="org.biye.mymall.db" level="DEBUG" />
+    <logger name="org.biye.mymall.admin" level="DEBUG" />
+    <logger name="org.biye.mymall.wx" level="DEBUG" />
+    <logger name="org.biye.mymall" level="DEBUG" />
 ```
 
 具体如何配置，请自行学习Spring Boot的日志配置和logback日志配置。
 
-`org.linlinjava.mymall.core`定义mymall-core模块的日志级别
-`org.linlinjava.mymall.db`定义mymall-db模块的日志级别
-`org.linlinjava.mymall.wx`定义mymall-wx-api模块的日志级别
-`org.linlinjava.mymall.admin`定义mymall-admin-api模块的日志级别
-`org.linlinjava.mymall`而定义mymall所有后端模块的日志级别
+`org.biye.mymall.core`定义mymall-core模块的日志级别
+`org.biye.mymall.db`定义mymall-db模块的日志级别
+`org.biye.mymall.wx`定义mymall-wx-api模块的日志级别
+`org.biye.mymall.admin`定义mymall-admin-api模块的日志级别
+`org.biye.mymall`而定义mymall所有后端模块的日志级别
 
 当然，如果开发者这里启动mymall后端模块级别是DEBUG时，可能会发现并没有很多日志，
 这是因为代码内部没有写很多日志，开发者可以根据需要添加。
