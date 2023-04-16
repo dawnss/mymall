@@ -26,15 +26,15 @@ fi
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 cd $DIR/../.. || exit 2
-LITEMALL_HOME=$PWD
-echo "LITEMALL_HOME $LITEMALL_HOME"
+MYMALL_HOME=$PWD
+echo "MYMALL_HOME $MYMALL_HOME"
 
 # 项目打包
-cd $LITEMALL_HOME || exit 2
+cd $MYMALL_HOME || exit 2
 ./deploy/util/package.sh
 
 # 上传云服务器
-cd $LITEMALL_HOME || exit 2
+cd $MYMALL_HOME || exit 2
 scp -i $ID_RSA -r  ./deploy $REMOTE:/home/ubuntu/
 
 # 远程登录云服务器并执行reset脚本

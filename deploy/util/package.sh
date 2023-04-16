@@ -8,27 +8,43 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 cd $DIR/../..
-LITEMALL_HOME=$PWD
-echo "LITEMALL_HOME $LITEMALL_HOME"
+#项目根目录
+MYMALL_HOME=$PWD
+echo "MYMALL_HOME $MYMALL_HOME"
 
 # 复制数据库
-cat $LITEMALL_HOME/mymall-db/sql/mymall_schema.sql > $LITEMALL_HOME/deploy/db/mymall.sql
-cat $LITEMALL_HOME/mymall-db/sql/mymall_table.sql >> $LITEMALL_HOME/deploy/db/mymall.sql
-cat $LITEMALL_HOME/mymall-db/sql/mymall_data.sql >> $LITEMALL_HOME/deploy/db/mymall.sql
+cat $MYMALL_HOME/mymall-db/sql/mymall_schema.sql > $MYMALL_HOME/deploy/db/mymall.sql
+cat $MYMALL_HOME/mymall-db/sql/mymall_table.sql >> $MYMALL_HOME/deploy/db/mymall.sql
+cat $MYMALL_HOME/mymall-db/sql/mymall_data.sql >> $MYMALL_HOME/deploy/db/mymall.sql
 
 # 安装阿里node镜像工具
-npm install -g cnpm --registry=https://registry.npm.taobao.org
+npm config set registry https://registry.npm.taobao.org
 
 # 打包mymall-admin
-cd $LITEMALL_HOME/mymall-admin
-cnpm install
-cnpm run build:dep
+echo "编译打包mymall-admin"
+cd $MYMALL_HOME/mymall-admin
+npm install
+npm run build:dep
 
 # 打包mymall-vue
-cd $LITEMALL_HOME/mymall-vue
-cnpm install
-cnpm run build:dep
+echo "编译打包mymall-vue"
+cd $MYMALL_HOME/mymall-vue
+npm install
+npm run build:dep
 
-cd $LITEMALL_HOME
+echo "编译打包java代码"
+cd $MYMALL_HOME
 mvn clean package
-cp -f $LITEMALL_HOME/mymall-all/target/mymall-all-*-exec.jar $LITEMALL_HOME/deploy/mymall/mymall.jar
+cp -f $MYMALL_HOME/mymall-all/target/mymall-all-*-exec.jar $MYMALL_HOME/deploy/mymall/mymall.jar
+
+# 单独复制到一个目录下
+cd ../
+PARENT_HOME=$PWD
+mkdir project
+cd $PARENT_HOME/project
+
+echo "启动脚本、代码复制到指定路径"
+cp $MYMALL_HOME/deploy/bin $PARENT_HOME/project -r
+
+chmod +x ./bin/*.sh
+cp $MYMALL_HOME/deploy/mymall $PARENT_HOME/project -r

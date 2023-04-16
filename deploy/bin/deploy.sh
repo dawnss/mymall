@@ -8,5 +8,11 @@ then
     kill $PID
 fi
 
-cd /home/ubuntu/deploy/mymall || exit 2
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+cd $DIR/../..
+#项目根目录
+MYMALL_HOME=$PWD
+echo "MYMALL_HOME $MYMALL_HOME"
+
+cd $MYMALL_HOME/deploy/mymall || exit 2
 nohup java -jar mymall.jar > log.log 2>&1 &
