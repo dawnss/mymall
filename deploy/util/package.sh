@@ -21,18 +21,18 @@ cat $MYMALL_HOME/mymall-db/sql/mymall_data.sql >> $MYMALL_HOME/deploy/db/mymall.
 npm config set registry https://registry.npm.taobao.org
 
 # 打包mymall-admin
-echo "编译打包mymall-admin"
+echo "=====编译打包mymall-admin====="
 cd $MYMALL_HOME/mymall-admin
 npm install
 npm run build:dep
 
 # 打包mymall-vue
-echo "编译打包mymall-vue"
+echo "=====编译打包mymall-vue====="
 cd $MYMALL_HOME/mymall-vue
 npm install
 npm run build:dep
 
-echo "编译打包java代码"
+echo "=====编译打包java代码====="
 cd $MYMALL_HOME
 mvn clean package
 cp -f $MYMALL_HOME/mymall-all/target/mymall-all-*-exec.jar $MYMALL_HOME/deploy/mymall/mymall.jar
@@ -40,11 +40,12 @@ cp -f $MYMALL_HOME/mymall-all/target/mymall-all-*-exec.jar $MYMALL_HOME/deploy/m
 # 单独复制到一个目录下
 cd ../
 PARENT_HOME=$PWD
-mkdir project
+mkdir -p project
 cd $PARENT_HOME/project
 
-echo "启动脚本、代码复制到指定路径"
-cp $MYMALL_HOME/deploy/bin $PARENT_HOME/project -r
+echo "=====启动脚本、代码复制到指定路径====="
+cp -rf $MYMALL_HOME/deploy/bin $PARENT_HOME/project
 
 chmod +x ./bin/*.sh
-cp $MYMALL_HOME/deploy/mymall $PARENT_HOME/project -r
+cp -rf $MYMALL_HOME/deploy/mymall $PARENT_HOME/project
+echo "=====项目打包编译完成====="
