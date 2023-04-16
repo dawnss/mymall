@@ -97,9 +97,9 @@ export default {
   },
   methods: {
     getCode() {
-      getKaptcha().then(response => {
+      /** getKaptcha().then(response => {
         this.codeImg = response.data.data
-      })
+      })*/
     },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {

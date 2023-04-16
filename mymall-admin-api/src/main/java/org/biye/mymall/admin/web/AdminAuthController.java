@@ -57,11 +57,12 @@ public class AdminAuthController {
 
     @GetMapping("/kaptcha")
     public Object kaptcha(HttpServletRequest request) {
-        String kaptcha = doKaptcha(request);
+        /*String kaptcha = doKaptcha(request);
         if (kaptcha != null) {
             return ResponseUtil.ok(kaptcha);
         }
-        return ResponseUtil.fail();
+        return ResponseUtil.fail();*/
+        return ResponseUtil.ok();
     }
 
     private String doKaptcha(HttpServletRequest request) {
