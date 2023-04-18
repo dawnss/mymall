@@ -2,9 +2,6 @@
 ENV = 'production'
 
 # base api
-#VUE_APP_BASE_API = 'http://8.210.105.140:18080/wx'
-
-# base api
 #VUE_APP_BASE_API = 'http://www.abctxyz.com/wx'
 # base api
 VUE_APP_BASE_API = '/wx'
