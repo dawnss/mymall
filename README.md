@@ -21,7 +21,7 @@ mymall = Spring Boot后端 + Vue管理员前端 + 微信小程序用户前端 + 
 
 ![](./doc/pics/readme/mobmall.png)
 
-或者浏览器采用手机模式访问以下网址: [http://122.51.199.160:8080/vue/index.html#/](http://122.51.199.160:8080/vue/index.html#/)
+或者浏览器采用手机模式访问以下网址: [http://www.abctxyz.com:8080/vue/index.html#/](http://www.abctxyz.com:8080/vue/index.html#/)
 
 注意：
 > 1. 由于第一次加载数据量较大，建议wifi网络访问，且耐心等待数秒。
@@ -31,7 +31,7 @@ mymall = Spring Boot后端 + Vue管理员前端 + 微信小程序用户前端 + 
 
 ![](./doc/pics/readme/admin-dashboard.png)
 
-1. 浏览器打开，输入以下网址: [http://122.51.199.160:8080/#/login](http://122.51.199.160:8080/#/login)
+1. 浏览器打开，输入以下网址: [http://www.abctxyz.com:8080/#/login](http://www.abctxyz.com:8080/#/login)
 2. 管理员用户名`admin123`，管理员密码`admin123`
 > 注意：此实例只是测试管理后台。
 

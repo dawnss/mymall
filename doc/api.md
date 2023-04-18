@@ -439,11 +439,11 @@ API应该存在版本控制，以保证兼容性。
 造成代码不是很简洁。特别是具备代码属性的注解和Swagger文档注解混杂在一起，可能不是很好。
 
 当然，本项目也简单地配置了Swagger(见`WxSwagger2Configuration`和`AdminSwagger2Configuration`)，
-* 在线Swagger文档链接：http://122.51.199.160:8080/swagger-ui.html
+* 在线Swagger文档链接：http://www.abctxyz.com:8080/swagger-ui.html
 * 本地Swagger文档链接：http://localhost:8080/swagger-ui.html
 
 此外，也使用了swagger-bootstrap-ui对Swagger进一步增强了使用效果。
-* 在线swagger-bootstrap-ui文档链接：http://122.51.199.160:8080/doc.html
+* 在线swagger-bootstrap-ui文档链接：http://www.abctxyz.com:8080/doc.html
 * 本地swagger-bootstrap-ui文档链接：http://localhost:8080/doc.html
 
 当然正如上文讨论，本项目不是很接受Swagger的理念，所以后端没有使用Swagger的相关文档注解，
