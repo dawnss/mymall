@@ -43,6 +43,15 @@ PARENT_HOME=$PWD
 mkdir -p project
 cd $PARENT_HOME/project
 
+echo "=====停止原来服务====="
+PID=$(ps -ef | grep mymall.jar | grep -v grep | awk '{ print $2 }')
+
+if [ ! -z "$PID" ]
+then
+    kill $PID
+fi
+
+
 echo "=====启动脚本、代码复制到指定路径====="
 cp -rf $MYMALL_HOME/deploy/bin $PARENT_HOME/project
 
